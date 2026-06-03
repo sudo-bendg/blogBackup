@@ -2,6 +2,7 @@
 layout: '../../layouts/BlogLayout.astro'
 title: "bengodfrey.dev - the stack"
 author: "Ben Godfrey"
+postTitle: "bengodfreydev002_theStack"
 ---
 
 # bengodfrey.dev - the stack

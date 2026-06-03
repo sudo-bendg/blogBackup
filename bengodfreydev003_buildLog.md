@@ -2,6 +2,7 @@
 layout: '../../layouts/BlogLayout.astro'
 title: "bengodfrey.dev - build log"
 author: "Ben Godfrey"
+postTitle: "bengodfreydev003_buildLog"
 ---
 
 # bengodfrey.dev - build log

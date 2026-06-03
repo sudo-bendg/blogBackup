@@ -2,7 +2,7 @@
 layout: '../../layouts/BlogLayout.astro'
 title: "bengodfrey.dev - requirements"
 author: "Ben Godfrey"
-postTitle: "testpostname"
+postTitle: "bengodfreydev001_requirements"
 ---
 
 # bengodfrey.dev - requirements

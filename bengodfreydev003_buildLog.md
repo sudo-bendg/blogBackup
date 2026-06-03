@@ -131,3 +131,156 @@ func CreateUserTable(db *sql.DB) {
 Then I can import this into my `main.go` by adding "bengodfrey.dev/blog-backend/migrations" to my imports and calling `migrations.CreateUserTable(db)` in the main function. After running this I can see my db file created, so I think we are happy. I also wrote some tests, I'm not *that* sloppy.
 
 I done the same as above for my comment table, because sometimes I am *that* sloppy.
+
+### Server
+
+A crucial part of handling my api requests will be having a server to do this on. From reading about Go, it seems that the standard way of doing this (or at least an easy way of doing this) is by writing some handler functions, and using these functions to handle some endpoint. At this point, my development has gone ahead of my writing so to save myself some time, and to save some digital chalk, I will break down one of my handlers:
+
+```go
+func (h *CommentHandler) GetComments(w http.ResponseWriter, r *http.Request) {
+
+	postName := r.Header.Get("X-Post-Name")
+	if postName == "" {
+		http.Error(w, "Missing X-Post-Name header", http.StatusBadRequest)
+		return
+	}
+
+	rows, err := h.DB.Query(
+		"SELECT id, post_name, user_id, content FROM comment WHERE post_name = ?",
+		postName,
+	)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	comments := []Comment{}
+	for rows.Next() {
+		var c Comment
+		err := rows.Scan(&c.ID, &c.PostName, &c.UserID, &c.Content)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		comments = append(comments, c)
+	}
+
+	if err = rows.Err(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(comments); err != nil {
+		return
+	}
+}
+```
+
+In this handler, I am grabbing a value from the headers (`X-Post-Name`), and querying the database to find comments which belong to the corresponding post. I then read the found rows, and create a list of Comments which is to be returned. If I come across any errors on the way, I wiwll handle them appropriately.
+
+There is clearly a lot more detail that goes into writing the backend logic, but I am happy to skip it, as I am really just using fairly standard tools of the Go language.
+
+## Stitching things together
+
+I now have two things:
+
+- An Astro-generated frontend
+- A Go backend
+
+Next, I need them to talk to each other. To achieve this, I will use nginx as a proxy - sending /api/* requests to my backend, and having other requests try to find some matching page. Now, in the name of simplicity, I am going to make another green sacrifice, albeit a small one. From my previous dealings with nginx, it is easier with docker. This is most probably down to a shortcoming in my own knowledge, and in time I should be more comfortable with bare metal installations, but for now, docker makes sense.
+
+### dockerfile
+
+I will first deal with our backend's docker logic. I currently have my backend logic in a /backend directory. I will copy this into a decently named place, and make sure there is some location (/app/data/backend.db) for my sqlite db file to live:
+
+```dockerfile
+FROM golang:1.26-alpine
+WORKDIR /app
+RUN mkdir -p /app/data
+VOLUME /app/data
+
+COPY backend/ ./backend/
+RUN cd backend && CGO_ENABLED=0 GOOS=linux go build -o /main main.go
+```
+
+After this, we need to set up our pages. The Astro project is in /bengodfreydev, so as above we will copy this across. Once we have this, we can build the pages with the same `npm run build` command which I use locally. Note, I build these pages, **then** point nginx towards them. This achieves the whole "serve static pages" thing which I was looking for before.
+
+```dockerfile
+FROM node:22-alpine AS frontend-builder
+WORKDIR /app
+
+COPY bengodfreydev/package*.json ./
+RUN npm ci
+
+COPY bengodfreydev/ ./
+
+RUN npm run build
+```
+
+Now we want to pull the parts of this together with our nginx container. The config here can be fairly simple, as long as we are getting our pages from and sending our api requests to the right place.
+
+```
+server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+        rewrite ^/api/(.*)$ /$1 break;
+        proxy_pass http://127.0.0.1:8080;
+        
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+Then finally, we pull the pieces together and define an executable. We have our dockerfile:
+
+
+```dockerfile
+FROM golang:1.26-alpine AS backend-builder
+WORKDIR /app
+RUN mkdir -p /app/data
+VOLUME /app/data
+
+COPY backend/ ./backend/
+RUN cd backend && CGO_ENABLED=0 GOOS=linux go build -o /main main.go
+
+FROM node:22-alpine AS frontend-builder
+WORKDIR /app
+
+COPY bengodfreydev/package*.json ./
+RUN npm ci
+
+COPY bengodfreydev/ ./
+
+RUN npm run build
+
+FROM nginx:alpine
+WORKDIR /app
+
+COPY --from=backend-builder /main /app/main
+
+COPY --from=frontend-builder /app/dist /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+RUN echo '#!/bin/sh' > /entrypoint.sh && \
+    echo '/app/main &' >> /entrypoint.sh && \
+    echo 'exec nginx -g "daemon off;"' >> /entrypoint.sh && \
+    chmod +x /entrypoint.sh
+
+EXPOSE 80
+ENTRYPOINT ["/entrypoint.sh"]
+```

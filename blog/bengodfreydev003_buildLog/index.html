@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><meta name="generator" content="Astro v6.4.2"><title>Ben Godfrey</title><style>html,body{margin:0;width:100%;height:100%;font-family:monospace;background-color:#3b3f3b;color:#d2d2d2}#content h1{color:#80b192;font-size:2.5rem}#content h2{color:#80b192;font-size:2.3rem}#content h3{color:#80b192;font-size:1.9rem}#content h4{color:#80b192;font-size:1.5rem}#content h5{color:#80b192;font-size:1.25rem}#content h6{color:#80b192;font-size:1rem}#content p{font-size:1.5rem;line-height:1.5}a{color:#d2d2d2}#title{padding:10px}#title>a>*{margin:0}#title h1{font-size:3rem}#title h2{font-size:2.5rem}nav{display:flex;justify-content:space-between;align-items:center;padding:5px;border-bottom:1px solid;position:relative;height:15%}#links{display:flex;gap:15px;align-items:center}#login-nav-form{display:flex;flex-direction:column;gap:4px}.form-inputs{display:flex;gap:8px;align-items:center}.toggle-label{font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none}.toggle-label input[type=checkbox]{accent-color:#80b192;cursor:pointer}#login-nav-form input[type=text],#login-nav-form input[type=password]{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:4px 8px;width:100px}#login-nav-form button{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:4px 8px;cursor:pointer}#login-nav-form button:hover{background-color:#80b192;color:#3b3f3b}#burger{display:none;border:none;background:transparent;color:#d2d2d2;font-size:2rem;cursor:pointer}#content{padding:5px max(5px,calc((100vw - 1000px)/2))}#comments-section{padding:20px max(5px,calc((100vw - 1000px)/2));border-top:1px solid #d2d2d2;margin-top:40px}#comments-section h3{color:#80b192;font-size:1.9rem;margin-bottom:1rem}#comment-submit-form{display:flex;flex-direction:column;gap:10px;max-width:600px;margin-bottom:2rem}#commentContent{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:10px;font-size:1.1rem;resize:vertical}#commentContent:focus{outline:1px solid #80b192;border-color:#80b192}#submitCommentBtn{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:8px 16px;cursor:pointer;align-self:flex-start;font-size:1.1rem}#submitCommentBtn:hover{background-color:#80b192;color:#3b3f3b}.comment-item{border-left:3px solid #80b192;background-color:#d2d2d208;padding:10px 15px;margin-bottom:15px;max-width:800px}.comment-user{color:#80b192;margin:0 0 5px;font-size:1rem}.comment-content{margin:0;font-size:1.2rem;white-space:pre-wrap}@media(max-width:768px){#burger{display:block}#links{display:none;position:absolute;top:100%;right:0;flex-direction:column;align-items:flex-start;padding:10px;border:1px solid;background-color:#3b3f3b;z-index:10}#links.open{display:flex}#login-nav-form{margin-top:10px}.form-inputs{flex-direction:column;align-items:flex-start}#login-nav-form input[type=text],#login-nav-form input[type=password]{width:150px}}#contactLinks{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem}.contactLink{border:solid #d2d2d2 1px;flex:1 1 250px;max-width:300px;padding:1rem;overflow-wrap:break-word}.project{padding:1rem;border:solid #d2d2d2 1px}
+</style><script type="module" src="/_astro/page.BhAQTkHH.js"></script></head> <body> <nav> <div id="title"> <a href="/"> <h1>Ben Godfrey</h1> <h2>Developer</h2> </a> </div> <button id="burger" aria-label="Menu">☰</button> <div id="links"> <a href="/projects"><h2>projects</h2></a> <a href="/blog"><h2>blog</h2></a> <div id="auth"> <form id="login-nav-form"> <input type="text" id="navUser" placeholder="username" required> <input type="password" id="navPass" placeholder="password" required> <div> <button type="submit" id="authBtn">login</button> <label class="toggle-label"> <input type="checkbox" id="authToggle"> <span>sign up instead</span> </label> </div> </form> </div> </div> </nav> <div id="content"> <h1 id="bengodfreydev---build-log">bengodfrey.dev - build log</h1>
+<h1 id="astro-project-creation">Astro project creation</h1>
+<p>After coming to my decision around frontend framework, I put together my Astro project. This was fairly easy. There is a “Getting Started” section on their website, most of the code is just standard html, with a bit of React-like component crafting. With a small amount of googling, I have a wireframe which I am happy with.</p>
+<h2 id="architecture">Architecture</h2>
+<p>The architecture I want to aim for is along these lines:</p>
+<pre class="mermaid">sequenceDiagram
+    user->>server: GET /blog/x
+    server->>user: cached static page
+
+    user->>api: POST /blog/x/comment
+    api->>db: store comment
+    api->>ci: trigger rebuild (webhook)
+
+    ci->>astro: astro build
+    astro->>storage: updated static site
+    storage->>server: cache updated pages</pre>
+<p>As such, I will be calling on astro exactly when the api’s POST /blog/x/comment endpoint is hit.</p>
+<p>Blog posts will not be created through the site itself, but rather through commits to the repo, so we don’t need to worry about any sort of dynamic creation of files. We just need to have some logic in each blog post’s page to go and fetch comments.</p>
+<h3 id="auth">Auth</h3>
+<p>I have skirted around the fact that I will most likely need some idea of auth for my api. This will help me with rate limiting - users can only comment when signed in, and a user can only comment once a minute or similar. With these rules in place I will only need to worry about rate limiting on the auth endpoints themselves.</p>
+<p>How will I actually go about handling the auth then? That is the question. On this point, I will turn to my other guiding principle. Let’s keep things simple. Specifically, let’s keep things simple for me. I roughly understand tokens, whereas sessions are something I have not had to worry about before. I can handle auth by giving a token in return for some successful auth request. Since I do not really care about specifics of who is using the site, I can keep the tokens simple. Some signed variant of</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#FDAEB7;font-style:italic">    username</span><span style="color:#E1E4E8">: </span><span style="color:#FDAEB7;font-style:italic">xxx</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FDAEB7;font-style:italic">    expires</span><span style="color:#E1E4E8">: </span><span style="color:#FDAEB7;font-style:italic">yyy</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="storage">Storage</h3>
+<p>In keeping with my simple and green approach, I have another clear winner when it comes to database. SQLite will give me everything I need. A place to persist small amounts of data, and a simple interface way of interacting with my api. My data can be modelled as follows</p>
+<pre class="mermaid">erDiagram
+
+    USERS ||--o{ COMMENTS : writes
+
+    USERS {
+        TEXT username PK
+        TEXT password_hash
+    }
+
+    COMMENTS {
+        INTEGER id PK
+        TEXT post_name NOT NULL
+        TEXT user_id NOT NULL
+        TEXT content NOT NULL
+    }</pre>
+<h3 id="api-language">API language</h3>
+<p>I am just about to take a new musical interlude while I go off and build my api. Before I make a start on this, however, I will make a quick call as to what language I should be using. Probably one of my last wee decisions to make. I have tried to go at things with an open mind so far on most decisions I have been making, but I would like to make a clear call on this one. I want to use a Go backend for this website. There are a couple of reasons for this:</p>
+<ul>
+<li>A compiled language like Go will align well with my green principle
+<ul>
+<li>Any Node backend which I might try to use will always end up being less efficient than Go</li>
+</ul>
+</li>
+<li>I have not had much of a chance to use Go in the past, and I think it is a skill worth building.</li>
+</ul>
+<p>Any questions? No? Good.</p>
+<h2 id="building-my-backend">Building my Backend</h2>
+<h3 id="database-foundations">Database foundations</h3>
+<p>I don’t want to jump into building my backend as if it is one giant thing. I want to approach it in a few steps. Firstly, I want to initialise my database and write a couple of migrations.</p>
+<p>As mentioned before, SQLite will suit my needs. I will need a driver for this. I will go ahead and install this with <code>go get github.com/mattn/go-sqlite3</code>. I can ensure that everything has been installed ok by trying to use this driver:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#B392F0"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#9ECBFF">	"</span><span style="color:#B392F0">database/sql</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#9ECBFF">	"</span><span style="color:#B392F0">log</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	_ </span><span style="color:#9ECBFF">"</span><span style="color:#B392F0">github.com/mattn/go-sqlite3</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">	db, err </span><span style="color:#F97583">:=</span><span style="color:#E1E4E8"> sql.</span><span style="color:#B392F0">Open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"sqlite3"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"./backend.db"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> err </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> nil</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">		log.</span><span style="color:#B392F0">Fatal</span><span style="color:#E1E4E8">(err)</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#F97583">	defer</span><span style="color:#E1E4E8"> db.</span><span style="color:#B392F0">Close</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>No red, we are happy. With this in place, we can start writing the migrations themselves. I will create <code>migrations/x.go</code> files, starting with <code>migrations/createUserTable.go</code>. This is, again, not too tricky yet:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#B392F0"> migrations</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#9ECBFF">	"</span><span style="color:#B392F0">database/sql</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#9ECBFF">	"</span><span style="color:#B392F0">fmt</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#9ECBFF">	"</span><span style="color:#B392F0">log</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> CreateUserTable</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">db</span><span style="color:#F97583"> *</span><span style="color:#B392F0">sql</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">DB</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">	_, err </span><span style="color:#F97583">:=</span><span style="color:#E1E4E8"> db.</span><span style="color:#B392F0">Exec</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`CREATE TABLE IF NOT EXISTS users (</span></span>
+<span class="line"><span style="color:#9ECBFF">		username TEXT PRIMARY KEY,</span></span>
+<span class="line"><span style="color:#9ECBFF">		password_hash TEXT NOT NULL</span></span>
+<span class="line"><span style="color:#9ECBFF">	)`</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> err </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> nil</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">		log.</span><span style="color:#B392F0">Fatal</span><span style="color:#E1E4E8">(err)</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#E1E4E8">	fmt.</span><span style="color:#B392F0">Println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"users table created"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Then I can import this into my <code>main.go</code> by adding “bengodfrey.dev/blog-backend/migrations” to my imports and calling <code>migrations.CreateUserTable(db)</code> in the main function. After running this I can see my db file created, so I think we are happy. I also wrote some tests, I’m not <em>that</em> sloppy.</p>
+<p>I done the same as above for my comment table, because sometimes I am <em>that</em> sloppy.</p> </div> <div id="comments-section"> <h3>Comments</h3> <form id="comment-submit-form" data-post-title="bengodfreydev003_buildLog"> <textarea id="commentContent" placeholder="Type your comment here..." required rows="4"></textarea> <button type="submit" id="submitCommentBtn">Post Comment</button> </form> <div id="comments" data-post-title="bengodfreydev003_buildLog"> <p>Loading comments...</p> </div> </div> <script type="module">const l=document.getElementById("burger"),u=document.getElementById("links");l?.addEventListener("click",()=>{u?.classList.toggle("open")});const e=document.getElementById("authToggle"),s=document.getElementById("authBtn");e?.addEventListener("change",()=>{s&&(s.textContent=e.checked?"sign up":"login")});const g=document.getElementById("login-nav-form");g?.addEventListener("submit",async c=>{c.preventDefault();const n=document.getElementById("navUser"),t=document.getElementById("navPass");if(!n||!t||!e)return;const a=n.value,d=t.value,r=e.checked?"/api/signup":"/api/login",i=e.checked?"Sign up":"Login";try{(await fetch(r,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:a,password:d}),credentials:"include"})).ok?window.location.reload():alert(`${i} failed`)}catch(o){console.error("Network error:",o)}});</script> <script type="module">const e=document.getElementById("comments"),m=document.getElementById("comment-submit-form"),n=e?.dataset.postTitle||"";console.log("Fetched postTitle:",n);n||(console.warn("Comments section loaded, but no postTitle was provided by the Astro layout."),e&&(e.innerHTML="<p>Comments are disabled for this page.</p>"));console.log("postTitle");console.log(n);async function i(){if(!(!e||!n))try{const o=await fetch("/api/comment",{method:"GET",headers:{"Content-Type":"application/json","X-Post-Name":n},credentials:"include"});if(o.ok){const s=await o.json();e.innerHTML="",s.forEach(r=>{const t=document.createElement("div");t.classList.add("comment-item"),t.innerHTML=`
+                                <p class="comment-user"><strong>@${r.user_id}</strong></p>
+                                <p class="comment-content">${r.content}</p>
+                            `,e.appendChild(t)}),s.length===0&&(e.innerHTML="<p>No comments yet. Be the first!</p>")}else e.innerHTML="<p>Failed to load comments.</p>"}catch(o){console.error("Network error fetching comments:",o),e.innerHTML="<p>Network error fetching comments.</p>"}}i();m?.addEventListener("submit",async o=>{o.preventDefault();const s=document.getElementById("commentContent");if(!s)return;if(!n){alert("Cannot post comment: Target post title is missing.");return}const r=s.value;try{const t=await fetch("/api/comment",{method:"POST",headers:{"Content-Type":"application/json","X-Post-Name":n},body:JSON.stringify({content:r}),credentials:"include"});if(t.ok){s.value="",e?.querySelector("p")?.textContent?.includes("No comments yet")&&(e.innerHTML="");const c=document.createElement("div");c.classList.add("comment-item"),c.innerHTML=`
+                            <p class="comment-user"><strong>@You</strong></p>
+                            <p class="comment-content">${r.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</p>
+                        `,e?.appendChild(c)}else t.status===401?alert("Unauthorized: You must be logged in to comment."):alert("Failed to post comment. Check server logs.")}catch(t){console.error("Network error posting comment:",t),alert("A network error occurred while posting your comment.")}});</script> </body> </html>

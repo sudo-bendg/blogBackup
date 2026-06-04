@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><meta name="generator" content="Astro v6.4.2"><title>Ben Godfrey</title><style>html,body{margin:0;width:100%;height:100%;font-family:monospace;background-color:#3b3f3b;color:#d2d2d2}#signup-banner{background-color:#2b2e2b;border-bottom:1px solid #80b192;padding:8px 0;font-size:.9rem}.banner-inner{max-width:1000px;margin:0 auto;padding:0 10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}#signup-banner a{color:#80b192;text-decoration:underline}#signup-banner a:hover{color:#d2d2d2}#content h1{color:#80b192;font-size:2.5rem}#content h2{color:#80b192;font-size:2.3rem}#content h3{color:#80b192;font-size:1.9rem}#content h4{color:#80b192;font-size:1.5rem}#content h5{color:#80b192;font-size:1.25rem}#content h6{color:#80b192;font-size:1rem}#content p{font-size:1.5rem;line-height:1.5}a{color:#d2d2d2}#title{padding:10px}#title>a>*{margin:0}#title h1{font-size:3rem}#title h2{font-size:2.5rem}nav{display:flex;justify-content:space-between;align-items:center;padding:5px;border-bottom:1px solid;position:relative;height:15%}#links{display:flex;gap:15px;align-items:center}#login-nav-form{display:flex;flex-direction:column;gap:4px}.form-inputs{display:flex;gap:8px;align-items:center}.toggle-label{font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none}.toggle-label input[type=checkbox]{accent-color:#80b192;cursor:pointer}#login-nav-form input[type=text],#login-nav-form input[type=password]{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:4px 8px;width:100px}#login-nav-form button{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:4px 8px;cursor:pointer}#login-nav-form button:hover{background-color:#80b192;color:#3b3f3b}#burger{display:none;border:none;background:transparent;color:#d2d2d2;font-size:2rem;cursor:pointer}#content{padding:5px max(5px,calc((100vw - 1000px)/2))}#comments-section{padding:20px max(5px,calc((100vw - 1000px)/2));border-top:1px solid #d2d2d2;margin-top:40px}#comments-section h3{color:#80b192;font-size:1.9rem;margin-bottom:1rem}#comment-submit-form{display:flex;flex-direction:column;gap:10px;max-width:600px;margin-bottom:2rem}#commentContent{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:10px;font-size:1.1rem;resize:vertical}#commentContent:focus{outline:1px solid #80b192;border-color:#80b192}#submitCommentBtn{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:8px 16px;cursor:pointer;align-self:flex-start;font-size:1.1rem}#submitCommentBtn:hover{background-color:#80b192;color:#3b3f3b}.comment-item{border-left:3px solid #80b192;background-color:#d2d2d208;padding:10px 15px;margin-bottom:15px;max-width:800px}.comment-user{color:#80b192;margin:0 0 5px;font-size:1rem}.comment-content{margin:0;font-size:1.2rem;white-space:pre-wrap}@media(max-width:768px){#burger{display:block}#links{display:none;position:absolute;top:100%;right:0;flex-direction:column;align-items:flex-start;padding:10px;border:1px solid;background-color:#3b3f3b;z-index:10}#links.open{display:flex}#login-nav-form{margin-top:10px}.form-inputs{flex-direction:column;align-items:flex-start}#login-nav-form input[type=text],#login-nav-form input[type=password]{width:150px}.banner-inner{flex-direction:column;align-items:flex-start;gap:4px}}#contactLinks{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem}.contactLink{border:solid #d2d2d2 1px;flex:1 1 250px;max-width:300px;padding:1rem;overflow-wrap:break-word}.project{padding:1rem;border:solid #d2d2d2 1px}
+</style><script type="module" src="/_astro/page.BhAQTkHH.js"></script></head> <body> <nav> <div id="title"> <a href="/"> <h1>Ben Godfrey</h1> <h2>Developer</h2> </a> </div> <button id="burger" aria-label="Menu">☰</button> <div id="links"> <a href="/projects"><h2>projects</h2></a> <a href="/blog"><h2>blog</h2></a> <div id="auth"> <form id="login-nav-form"> <input type="text" id="navUser" placeholder="username" required> <input type="password" id="navPass" placeholder="password" required> <div> <button type="submit" id="authBtn">login</button> <label class="toggle-label"> <input type="checkbox" id="authToggle"> <span>sign up instead</span> </label> </div> </form> </div> </div> </nav> <div id="signup-banner" style="display: none;"> <div class="banner-inner"> <span>⚠️ Username must be exactly 3 alphanumeric characters.</span> <span>By signing up, you agree to the <a href="/terms_and_conditions" target="_blank">Terms</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</span> </div> </div> <div id="content"> <h1 id="homelab-refresh-006---logging-execution">Homelab Refresh 006 - Logging Execution</h1>
+<h4 id="benjamin-godfrey">Benjamin Godfrey</h4>
+<p>As per my ramblings on logging, we have settled on the following architecture.</p>
+<pre class="mermaid">flowchart LR
+
+subgraph M1[Service-providing machine]
+    A[Service A]
+    B[Service B]
+    C[Vector]
+end
+
+subgraph M2[Log-viewing machine]
+    V[Grafana]
+end
+
+subgraph M3[lebesgue]
+    S[(Grafana Loki)]
+end
+
+A --> C
+B --> C
+
+C --> S
+
+V &#x3C;---> S</pre>
+<p>Now we need to go about the business of making this happen. To me, it makes sense for Loki to be the first thing we set up. Vector will need somewhere to point to, and Grafana will need something to fetch from. Also, having something running on <code>lebesgue</code> is going to be a good proof of concept that this less powerful machine can still be useful to us.</p>
+<h2 id="loki-installation">Loki Installation</h2>
+<p>As with most popular tools, Grafana Loki has <a href="https://grafana.com/docs/loki/latest/setup/install/local/">setup instructions</a> available to us. Let’s just try to follow these. Since I am installing Loki on a Raspberry Pi running Raspian, I have access to <code>apt</code>. Luckily for us, there is an <code>apt</code> package for Loki. Before we can install this, however, we need to follow the instructions laid out <a href="https://apt.grafana.com/">here</a> to add the package repository (this means that Loki is not available through <code>apt</code> as it is, we need to make it available ourselves):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> /etc/apt/keyrings/</span></span>
+<span class="line"><span style="color:#B392F0">wget</span><span style="color:#79B8FF"> -q</span><span style="color:#79B8FF"> -O</span><span style="color:#9ECBFF"> -</span><span style="color:#9ECBFF"> https://apt.grafana.com/gpg.key</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> gpg</span><span style="color:#79B8FF"> --dearmor</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF"> /etc/apt/keyrings/grafana.gpg</span></span>
+<span class="line"><span style="color:#79B8FF">echo</span><span style="color:#9ECBFF"> "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main"</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> tee</span><span style="color:#9ECBFF"> /etc/apt/sources.list.d/grafana.list</span></span></code></pre>
+<p>With the minor addition of a few <code>sudo</code>s, this went through without issue. Now we can move on to the actual installation. Quite simple, just a <code>sudo apt update</code> and <code>sudo apt install loki</code>. Without too much drama, we are done.</p>
+<p>With any installation it is good to make sure that the thing has installed correctly. For us, we can run <code>loki</code> and see what happens.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[loki.c:254] No parameter file specified</span></span></code></pre>
+<p>Uh oh. No good. Clearly something has gone wrong in our setup, or more precisely, something has not been set up. A quick google of this error message gives us the top result of a page on <code>grafana.com</code> entitled “Grafana Loki configuration parameters”, which seems a sensible response.</p>
+<p>This page points towards having a <code>loki.yaml</code> file, which make sense. It also gives us a nice example for a local configuration:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"></span>
+<span class="line"><span style="color:#6A737D"># This is a complete configuration to deploy Loki backed by the filesystem.</span></span>
+<span class="line"><span style="color:#6A737D"># The index will be shipped to the storage via tsdb-shipper.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">auth_enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">server</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  http_listen_port</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3100</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">common</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  ring</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    instance_addr</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">127.0.0.1</span></span>
+<span class="line"><span style="color:#85E89D">    kvstore</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      store</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">inmemory</span></span>
+<span class="line"><span style="color:#85E89D">  replication_factor</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span></span>
+<span class="line"><span style="color:#85E89D">  path_prefix</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/tmp/loki</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">schema_config</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  configs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">from</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2020-05-15</span></span>
+<span class="line"><span style="color:#85E89D">      store</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">tsdb</span></span>
+<span class="line"><span style="color:#85E89D">      object_store</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">filesystem</span></span>
+<span class="line"><span style="color:#85E89D">      schema</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">v13</span></span>
+<span class="line"><span style="color:#85E89D">      index</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        prefix</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">index_</span></span>
+<span class="line"><span style="color:#85E89D">        period</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">24h</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">storage_config</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  filesystem</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    directory</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/tmp/loki/chunks</span></span></code></pre>
+<p>Some more reading seems to suggest this file should live in <code>/etc/loki/loki.yaml</code>. I do not currently have a <code>/etc/loki</code> directory, but we can make it and give it a shot.</p>
+<p>After setting this config file and poking around a little more, I still could not get any further. I kept on coming up against error messages which didn’t seem to make sense. The one which seemed very telling was one I found after trying something I dug out of the docs for Loki, that is, running <code>loki --config=/path/to/config</code>. On this, I found my new error message was along the lines of <code>unexpected character -</code>. This was very confusing, especially as I had been following official Loki documentation. To try and answer some of these newly found questions, I checked <code>man loki</code>. All of a sudden, something clicked. On the man page, I saw the following title:</p>
+<p>loki - Reversible jump MCMC linkage analysis in general pedigrees</p>
+<p>That does not seem right. No mention of Grafana, no mention of logging, no sign of anything I would have expected. I had installed the wrong loki. What was worse, I could not find a way of installing the right one. The package which <code>apt</code> have found me was clearly something quite old, and not down the right tracks at all, but I was not finding any alternative either.</p>
+<p>Now, I clearly need to change my approach. I know that running a Docker container on the Raspberry Pi 1 will be a challenge, but Docker would make things simple. I am going to make a note to myself here and put a temporary fix in place. I will use Docker, but on a different machine - <code>zorn</code>, my desktop machine.</p>
+<p>The steps here are going to be a tad simpler. Especially as they are all documented <a href="https://grafana.com/docs/loki/latest/setup/install/docker/">here</a>. We will follow these steps, and test with <code>curl http://localhost:3100/ready</code>. Once we have a <code>ready</code> response we are happy.</p>
+<p>This installation has not gone as simply as we would have hoped, but we have Loki up and running now. At the very least we can continue with the rest of the setup for now.</p>
+<h2 id="grafana-installation">Grafana Installation</h2>
+<p>Next up is Grafana. For this step we will follow in some familiar footsteps, a Docker container running on <code>zorn</code>. As is documented <a href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/">here</a>, we can simply run <code>docker run -d -p 3000:3000 --name=grafana grafana/grafana-enterprise</code>. This installation (as you might expect) went a lot smoother. Once the image had been pulled and started up, we are sorted. Grafana is up and available at <code>http://zorn:3000</code>. We can go here, log in with our default <code>admin:admin</code> login, and there we have it.</p>
+<p>At this step, we can also confirm that the previous Loki installation was successful, as we can connect Loki as a data source. We can navigate to connections > data sources > add new data source Loki, point it towards the relevant address (for me, <code>http://zorn:3100</code>), and there we have it. As a final sanity check, we can manually push some log to Loki, and verify that it turns up in Grafana.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -X</span><span style="color:#9ECBFF"> POST</span><span style="color:#79B8FF"> -H</span><span style="color:#9ECBFF"> "Content-Type: application/json"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">            -d</span><span style="color:#9ECBFF"> '{</span></span>
+<span class="line"><span style="color:#9ECBFF">          "streams": [</span></span>
+<span class="line"><span style="color:#9ECBFF">            {</span></span>
+<span class="line"><span style="color:#9ECBFF">              "stream": {</span></span>
+<span class="line"><span style="color:#9ECBFF">                "label": "my-manual-test",</span></span>
+<span class="line"><span style="color:#9ECBFF">                "environment": "development"</span></span>
+<span class="line"><span style="color:#9ECBFF">              },</span></span>
+<span class="line"><span style="color:#9ECBFF">              "values": [</span></span>
+<span class="line"><span style="color:#9ECBFF">                [ "&#x3C;current time in unix microseconds format>", "This is a manually pushed log message." ]</span></span>
+<span class="line"><span style="color:#9ECBFF">              ]</span></span>
+<span class="line"><span style="color:#9ECBFF">            }</span></span>
+<span class="line"><span style="color:#9ECBFF">          ]</span></span>
+<span class="line"><span style="color:#9ECBFF">        }'</span><span style="color:#9ECBFF"> http://</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">loki</span><span style="color:#9ECBFF"> addres</span><span style="color:#E1E4E8">s</span><span style="color:#F97583">></span><span style="color:#9ECBFF">/loki/api/v1/push</span></span></code></pre>
+<p>Send off this cURL, look at your Grafana logs, and with a bit of luck, we are sorted.</p>
+<h2 id="docker-compose">Docker Compose</h2>
+<p>For the sake of keeping things simple and maintainable, I would like to avoid trying to remember my Docker commands all the time. Instead, I can put my config into a Docker Compose file. Doing this, with a few minor changes, we get the following file:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">services</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  grafana</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    image</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">grafana/grafana-enterprise</span></span>
+<span class="line"><span style="color:#85E89D">    container_name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">grafana</span></span>
+<span class="line"><span style="color:#85E89D">    ports</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">"3000:3000"</span></span>
+<span class="line"><span style="color:#85E89D">    volumes</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">/srv/observability/grafana:/var/lib/grafana</span></span>
+<span class="line"><span style="color:#85E89D">    restart</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">unless-stopped</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  loki</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    image</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">grafana/loki:3.7.0</span></span>
+<span class="line"><span style="color:#85E89D">    container_name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">loki</span></span>
+<span class="line"><span style="color:#85E89D">    ports</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">"3100:3100"</span></span>
+<span class="line"><span style="color:#85E89D">    volumes</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">/srv/observability/loki:/mnt/config</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">/srv/observability/loki/data:/loki</span></span>
+<span class="line"><span style="color:#85E89D">    command</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">-config.file=/mnt/config/loki-config.yaml</span></span>
+<span class="line"><span style="color:#85E89D">    restart</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">unless-stopped</span></span></code></pre>
+<h2 id="vector-installation">Vector Installation</h2>
+<p>As previously mentioned, all of my machines are either Debian or Ubuntu machines, meaning that I can use <code>apt</code> to install Vector. This method of installation is available <a href="https://vector.dev/docs/setup/installation/package-managers/apt/">here</a>.</p>
+<p>Now that we have this installed, we can get to work with installation. For me, I want my docker logs to be sent off to loki. Poking around a little bit, I can settle on this as my <code>/etc/vector/vector.yaml</code> config:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">sources</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  docker_logs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">docker_logs</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">transforms</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  add_host</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">remap</span></span>
+<span class="line"><span style="color:#85E89D">    inputs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">docker_logs</span></span>
+<span class="line"><span style="color:#85E89D">    source</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">|</span></span>
+<span class="line"><span style="color:#9ECBFF">      .host = get_hostname!()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">sinks</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  loki</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">loki</span></span>
+<span class="line"><span style="color:#85E89D">    inputs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">add_host</span></span>
+<span class="line"><span style="color:#85E89D">    endpoint</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http://192.168.1.124:3100</span></span>
+<span class="line"><span style="color:#85E89D">    encoding</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      codec</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">text</span></span>
+<span class="line"><span style="color:#85E89D">    labels</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      job</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">vector</span></span>
+<span class="line"><span style="color:#85E89D">        host</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"&#x3C;machine's name here, whatever it may be>"</span></span></code></pre>
+<p>In theory, I should be able to start up the vector service using <code>systemctl</code> by firing off a <code>systemctl start vector</code> command. In line with the precident which has been set, we meet some errors at this point. In particular, looking at the logs for vector after trying to start it, we can see that it is closing pretty soon after it is started. There is not so much a blatant error at play, it just seems that Vector is not staying alive. After some digging, I decided that I need to explicity tell systemctl to treat Vector as a service and keep it alive. We can do this with a <code>systemctl edit vector</code> update:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[Service]</span></span>
+<span class="line"><span>ExecStart=</span></span>
+<span class="line"><span>ExecStart=/usr/bin/vector --config-yaml /etc/vector/vector.yaml --watch-config</span></span>
+<span class="line"><span>Restart=always</span></span>
+<span class="line"><span>RestartSec=2</span></span></code></pre>
+<p>After this update, we are getting further. Now the logs show Vector staying alive but posting some permission errors. These are nicer. We can add the vector service account to the docker group with <code>sudo usermod -aG docker vector</code>, and hope that Vector will start up ok here.</p>
+<p>At long last, we are sorted, Vector shows some nice green logs. To make things even better, we can go to Grafana at this point and see logs being posted from our Docker images for Grafana and Loki. The job’s a good one.</p>
+<h4 id="appendix---future-proofing">Appendix - Future-proofing</h4>
+<p>In reading the steps outlined in setting up my logging solution, you might think to yourself “why bother?”. I certainly have thought that myself a good few times. After all of this we have our logs for two Docker containers, which we would have been able to get a hold of fairly easily anyway.</p>
+<p>The point is not in what we have just now. The point is that we have a solid foundation. My config for Grafana and Loki is set up such that logs from many services and many machines can be shown consistently and easily. The Vector install will be required on each machine, but the config should be able to stay fairly consistent across all of them. We have built a system that can be (and will be) extended. If we can make choices today that will help us not just tomorrow, but for many days after, we are doing a good job.</p> </div> <div id="comments-section"> <h3>Comments</h3> <form id="comment-submit-form" data-post-title="homelabrefresh_006_logging_execution"> <textarea id="commentContent" placeholder="Type your comment here..." required rows="4"></textarea> <button type="submit" id="submitCommentBtn">Post Comment</button> </form> <div id="comments" data-post-title="homelabrefresh_006_logging_execution"> <p>Loading comments...</p> </div> </div> <script type="module">const u=document.getElementById("burger"),m=document.getElementById("links");u?.addEventListener("click",()=>{m?.classList.toggle("open")});const t=document.getElementById("authToggle"),n=document.getElementById("authBtn"),e=document.getElementById("navUser"),o=document.getElementById("signup-banner");t?.addEventListener("change",()=>{t.checked?(n&&(n.textContent="sign up"),o&&(o.style.display="block"),e&&(e.setAttribute("pattern","^[a-zA-Z0-9]{3}$"),e.setAttribute("maxlength","3"),e.setAttribute("title","Username must be exactly 3 alphanumeric characters."))):(n&&(n.textContent="login"),o&&(o.style.display="none"),e&&(e.removeAttribute("pattern"),e.removeAttribute("maxlength"),e.removeAttribute("title")))});const g=document.getElementById("login-nav-form");g?.addEventListener("submit",async a=>{a.preventDefault();const s=document.getElementById("navPass");if(!e||!s||!t)return;const r=e.value,c=s.value,l=t.checked?"/api/signup":"/api/login",d=t.checked?"Sign up":"Login";try{(await fetch(l,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:r,password:c}),credentials:"include"})).ok?window.location.reload():alert(`${d} failed`)}catch(i){console.error("Network error:",i)}});</script> <script type="module">const e=document.getElementById("comments"),m=document.getElementById("comment-submit-form"),n=e?.dataset.postTitle||"";console.log("Fetched postTitle:",n);n||(console.warn("Comments section loaded, but no postTitle was provided by the Astro layout."),e&&(e.innerHTML="<p>Comments are disabled for this page.</p>"));console.log("postTitle");console.log(n);async function i(){if(!(!e||!n))try{const o=await fetch("/api/comment",{method:"GET",headers:{"Content-Type":"application/json","X-Post-Name":n},credentials:"include"});if(o.ok){const s=await o.json();e.innerHTML="",s.forEach(r=>{const t=document.createElement("div");t.classList.add("comment-item"),t.innerHTML=`
+                                <p class="comment-user"><strong>@${r.user_id}</strong></p>
+                                <p class="comment-content">${r.content}</p>
+                            `,e.appendChild(t)}),s.length===0&&(e.innerHTML="<p>No comments yet. Be the first!</p>")}else e.innerHTML="<p>Failed to load comments.</p>"}catch(o){console.error("Network error fetching comments:",o),e.innerHTML="<p>Network error fetching comments.</p>"}}i();m?.addEventListener("submit",async o=>{o.preventDefault();const s=document.getElementById("commentContent");if(!s)return;if(!n){alert("Cannot post comment: Target post title is missing.");return}const r=s.value;try{const t=await fetch("/api/comment",{method:"POST",headers:{"Content-Type":"application/json","X-Post-Name":n},body:JSON.stringify({content:r}),credentials:"include"});if(t.ok){s.value="",e?.querySelector("p")?.textContent?.includes("No comments yet")&&(e.innerHTML="");const c=document.createElement("div");c.classList.add("comment-item"),c.innerHTML=`
+                            <p class="comment-user"><strong>@You</strong></p>
+                            <p class="comment-content">${r.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</p>
+                        `,e?.appendChild(c)}else t.status===401?alert("Unauthorized: You must be logged in to comment."):alert("Failed to post comment. Check server logs.")}catch(t){console.error("Network error posting comment:",t),alert("A network error occurred while posting your comment.")}});</script> </body> </html>

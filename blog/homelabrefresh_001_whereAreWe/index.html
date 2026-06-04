@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><meta name="generator" content="Astro v6.4.2"><title>Ben Godfrey</title><style>html,body{margin:0;width:100%;height:100%;font-family:monospace;background-color:#3b3f3b;color:#d2d2d2}#signup-banner{background-color:#2b2e2b;border-bottom:1px solid #80b192;padding:8px 0;font-size:.9rem}.banner-inner{max-width:1000px;margin:0 auto;padding:0 10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}#signup-banner a{color:#80b192;text-decoration:underline}#signup-banner a:hover{color:#d2d2d2}#content h1{color:#80b192;font-size:2.5rem}#content h2{color:#80b192;font-size:2.3rem}#content h3{color:#80b192;font-size:1.9rem}#content h4{color:#80b192;font-size:1.5rem}#content h5{color:#80b192;font-size:1.25rem}#content h6{color:#80b192;font-size:1rem}#content p{font-size:1.5rem;line-height:1.5}a{color:#d2d2d2}#title{padding:10px}#title>a>*{margin:0}#title h1{font-size:3rem}#title h2{font-size:2.5rem}nav{display:flex;justify-content:space-between;align-items:center;padding:5px;border-bottom:1px solid;position:relative;height:15%}#links{display:flex;gap:15px;align-items:center}#login-nav-form{display:flex;flex-direction:column;gap:4px}.form-inputs{display:flex;gap:8px;align-items:center}.toggle-label{font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none}.toggle-label input[type=checkbox]{accent-color:#80b192;cursor:pointer}#login-nav-form input[type=text],#login-nav-form input[type=password]{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:4px 8px;width:100px}#login-nav-form button{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:4px 8px;cursor:pointer}#login-nav-form button:hover{background-color:#80b192;color:#3b3f3b}#burger{display:none;border:none;background:transparent;color:#d2d2d2;font-size:2rem;cursor:pointer}#content{padding:5px max(5px,calc((100vw - 1000px)/2))}#comments-section{padding:20px max(5px,calc((100vw - 1000px)/2));border-top:1px solid #d2d2d2;margin-top:40px}#comments-section h3{color:#80b192;font-size:1.9rem;margin-bottom:1rem}#comment-submit-form{display:flex;flex-direction:column;gap:10px;max-width:600px;margin-bottom:2rem}#commentContent{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:10px;font-size:1.1rem;resize:vertical}#commentContent:focus{outline:1px solid #80b192;border-color:#80b192}#submitCommentBtn{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:8px 16px;cursor:pointer;align-self:flex-start;font-size:1.1rem}#submitCommentBtn:hover{background-color:#80b192;color:#3b3f3b}.comment-item{border-left:3px solid #80b192;background-color:#d2d2d208;padding:10px 15px;margin-bottom:15px;max-width:800px}.comment-user{color:#80b192;margin:0 0 5px;font-size:1rem}.comment-content{margin:0;font-size:1.2rem;white-space:pre-wrap}@media(max-width:768px){#burger{display:block}#links{display:none;position:absolute;top:100%;right:0;flex-direction:column;align-items:flex-start;padding:10px;border:1px solid;background-color:#3b3f3b;z-index:10}#links.open{display:flex}#login-nav-form{margin-top:10px}.form-inputs{flex-direction:column;align-items:flex-start}#login-nav-form input[type=text],#login-nav-form input[type=password]{width:150px}.banner-inner{flex-direction:column;align-items:flex-start;gap:4px}}#contactLinks{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem}.contactLink{border:solid #d2d2d2 1px;flex:1 1 250px;max-width:300px;padding:1rem;overflow-wrap:break-word}.project{padding:1rem;border:solid #d2d2d2 1px}
+</style><script type="module" src="/_astro/page.BhAQTkHH.js"></script></head> <body> <nav> <div id="title"> <a href="/"> <h1>Ben Godfrey</h1> <h2>Developer</h2> </a> </div> <button id="burger" aria-label="Menu">☰</button> <div id="links"> <a href="/projects"><h2>projects</h2></a> <a href="/blog"><h2>blog</h2></a> <div id="auth"> <form id="login-nav-form"> <input type="text" id="navUser" placeholder="username" required> <input type="password" id="navPass" placeholder="password" required> <div> <button type="submit" id="authBtn">login</button> <label class="toggle-label"> <input type="checkbox" id="authToggle"> <span>sign up instead</span> </label> </div> </form> </div> </div> </nav> <div id="signup-banner" style="display: none;"> <div class="banner-inner"> <span>⚠️ Username must be exactly 3 alphanumeric characters.</span> <span>By signing up, you agree to the <a href="/terms_and_conditions" target="_blank">Terms</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</span> </div> </div> <div id="content"> <h1 id="homelab-refresh-001---where-are-we">Homelab Refresh 001 - Where are we?</h1>
+<h4 id="benjamin-godfrey">Benjamin Godfrey</h4>
+<h2 id="the-problem">The problem</h2>
+<p>My homelab, in its current form, is a mess. That is not a surprise, as it has evolved over time; grew, adapted, changed, if you will. New machines have been added, new services have popped up, services have become duplicated. As well as this, and perhaps more seriously, since I jumped into my homelabbing experience early doors, it is probably fair to say that the foundations were not as solid as they should have been.</p>
+<p>All of this is to say, I fancy a refresh. I am at a point just now where I could tear it down, start again, and spend less than a day getting things back into line. To me, that is worth it. This will give me the opportunity to start again, apply best practice, and <strong>document</strong>. Here we go.</p>
+<h2 id="the-goal">The goal</h2>
+<ul>
+<li>Simplify infrastructure</li>
+<li>Simplify deployment of services</li>
+<li>Improve security practice</li>
+<li>Improve documentation</li>
+</ul>
+<h2 id="the-resources">The resources</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Machine name</th><th>Machine type</th><th>CPU</th><th>Memory</th><th>Storage</th><th>OS</th></tr></thead><tbody><tr><td><code>zorn</code></td><td>2010s SFF desktop</td><td>Intel Core i5-4570</td><td>16gb</td><td>1tb+</td><td>Ubuntu Server</td></tr><tr><td><code>lebesgue</code></td><td>Raspberry Pi 1 B+</td><td>Broadcom BCM2835</td><td>~0.5gb</td><td>32gb</td><td>Raspberry Pi OS lite</td></tr><tr><td><code>romulus</code></td><td>Raspberry Pi 2 B</td><td>Broadcom BCM2836</td><td>~1gb</td><td>64gb</td><td>Raspberry Pi OS lite</td></tr><tr><td><code>remus</code></td><td>Raspberry Pi 2 B</td><td>Broadcom BCM2836</td><td>~1gb</td><td>64gb</td><td>Raspberry Pi OS lite</td></tr></tbody></table>
+<p>There is a clear difference in power between my machines, with <code>zorn</code> being much more powerful than each of the Pis. As such, I will use <code>zorn</code> as the main source of compute, handing smaller tasks off to the other machines. I will use either <code>romulus</code> or <code>remus</code> as the host of my wireguard vpn, as these are a nice middle ground of power.</p>
+<p>We can also see that there is a difference in storage available to each machine. As such, I will plan to keep the services on <code>romulus</code>, <code>remus</code>, and <code>lebesgue</code> fairly stateless. This is a general rule, which will probably be broken in future.</p>
+<h2 id="the-network">The network</h2>
+<p>These machines are all on the same LAN, connected by ethernet through an unmanaged switch. This is fine, and provides a baseline for communication. In addition to this, I will require a VPN to enable connection to machines and services from other devices. To facilitate this, I will use piVPN with wireguard, as it is a tool which I know.</p>
+<p>In the interest of security, I will impose some network rules. Specifically, I will have a single ssh entry point via wireguard, on <code>zorn</code>. All other ssh traffic will go through LAN. Similarly, I will allow network requests to <code>zorn</code> only to a single port, and use an nginx reverse proxy to route traffic.</p>
+<h3 id="risks">Risks</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Risk</th><th>Notes</th></tr></thead><tbody><tr><td>Single point of failure introduced with ssh over wireguard</td><td>As this is a homelab, only my own access to machines and services is important. Since all machines are on my LAN (and in my house) I will be able to access these, even in failure</td></tr></tbody></table> </div> <div id="comments-section"> <h3>Comments</h3> <form id="comment-submit-form" data-post-title="homelabrefresh_001_whereAreWe"> <textarea id="commentContent" placeholder="Type your comment here..." required rows="4"></textarea> <button type="submit" id="submitCommentBtn">Post Comment</button> </form> <div id="comments" data-post-title="homelabrefresh_001_whereAreWe"> <p>Loading comments...</p> </div> </div> <script type="module">const u=document.getElementById("burger"),m=document.getElementById("links");u?.addEventListener("click",()=>{m?.classList.toggle("open")});const t=document.getElementById("authToggle"),n=document.getElementById("authBtn"),e=document.getElementById("navUser"),o=document.getElementById("signup-banner");t?.addEventListener("change",()=>{t.checked?(n&&(n.textContent="sign up"),o&&(o.style.display="block"),e&&(e.setAttribute("pattern","^[a-zA-Z0-9]{3}$"),e.setAttribute("maxlength","3"),e.setAttribute("title","Username must be exactly 3 alphanumeric characters."))):(n&&(n.textContent="login"),o&&(o.style.display="none"),e&&(e.removeAttribute("pattern"),e.removeAttribute("maxlength"),e.removeAttribute("title")))});const g=document.getElementById("login-nav-form");g?.addEventListener("submit",async a=>{a.preventDefault();const s=document.getElementById("navPass");if(!e||!s||!t)return;const r=e.value,c=s.value,l=t.checked?"/api/signup":"/api/login",d=t.checked?"Sign up":"Login";try{(await fetch(l,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:r,password:c}),credentials:"include"})).ok?window.location.reload():alert(`${d} failed`)}catch(i){console.error("Network error:",i)}});</script> <script type="module">const e=document.getElementById("comments"),m=document.getElementById("comment-submit-form"),n=e?.dataset.postTitle||"";console.log("Fetched postTitle:",n);n||(console.warn("Comments section loaded, but no postTitle was provided by the Astro layout."),e&&(e.innerHTML="<p>Comments are disabled for this page.</p>"));console.log("postTitle");console.log(n);async function i(){if(!(!e||!n))try{const o=await fetch("/api/comment",{method:"GET",headers:{"Content-Type":"application/json","X-Post-Name":n},credentials:"include"});if(o.ok){const s=await o.json();e.innerHTML="",s.forEach(r=>{const t=document.createElement("div");t.classList.add("comment-item"),t.innerHTML=`
+                                <p class="comment-user"><strong>@${r.user_id}</strong></p>
+                                <p class="comment-content">${r.content}</p>
+                            `,e.appendChild(t)}),s.length===0&&(e.innerHTML="<p>No comments yet. Be the first!</p>")}else e.innerHTML="<p>Failed to load comments.</p>"}catch(o){console.error("Network error fetching comments:",o),e.innerHTML="<p>Network error fetching comments.</p>"}}i();m?.addEventListener("submit",async o=>{o.preventDefault();const s=document.getElementById("commentContent");if(!s)return;if(!n){alert("Cannot post comment: Target post title is missing.");return}const r=s.value;try{const t=await fetch("/api/comment",{method:"POST",headers:{"Content-Type":"application/json","X-Post-Name":n},body:JSON.stringify({content:r}),credentials:"include"});if(t.ok){s.value="",e?.querySelector("p")?.textContent?.includes("No comments yet")&&(e.innerHTML="");const c=document.createElement("div");c.classList.add("comment-item"),c.innerHTML=`
+                            <p class="comment-user"><strong>@You</strong></p>
+                            <p class="comment-content">${r.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</p>
+                        `,e?.appendChild(c)}else t.status===401?alert("Unauthorized: You must be logged in to comment."):alert("Failed to post comment. Check server logs.")}catch(t){console.error("Network error posting comment:",t),alert("A network error occurred while posting your comment.")}});</script> </body> </html>

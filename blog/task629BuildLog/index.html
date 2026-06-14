@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><meta name="generator" content="Astro v6.4.2"><title>Ben Godfrey</title><style>html,body{margin:0;width:100%;height:100%;font-family:monospace;background-color:#3b3f3b;color:#d2d2d2}#signup-banner{background-color:#2b2e2b;border-bottom:1px solid #80b192;padding:8px 0;font-size:.9rem}.banner-inner{max-width:1000px;margin:0 auto;padding:0 10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}#signup-banner a{color:#80b192;text-decoration:underline}#signup-banner a:hover{color:#d2d2d2}#content h1{color:#80b192;font-size:2.5rem}#content h2{color:#80b192;font-size:2.3rem}#content h3{color:#80b192;font-size:1.9rem}#content h4{color:#80b192;font-size:1.5rem}#content h5{color:#80b192;font-size:1.25rem}#content h6{color:#80b192;font-size:1rem}#content p{font-size:1.5rem;line-height:1.5}a{color:#d2d2d2}#title{padding:10px}#title>a>*{margin:0}#title h1{font-size:3rem}#title h2{font-size:2.5rem}nav{display:flex;justify-content:space-between;align-items:center;padding:5px;border-bottom:1px solid;position:relative;height:15%}#links{display:flex;gap:15px;align-items:center}#login-nav-form{display:flex;flex-direction:column;gap:4px}.form-inputs{display:flex;gap:8px;align-items:center}.toggle-label{font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:4px;user-select:none}.toggle-label input[type=checkbox]{accent-color:#80b192;cursor:pointer}#login-nav-form input[type=text],#login-nav-form input[type=password]{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:4px 8px;width:100px}#login-nav-form button{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:4px 8px;cursor:pointer}#login-nav-form button:hover{background-color:#80b192;color:#3b3f3b}#burger{display:none;border:none;background:transparent;color:#d2d2d2;font-size:2rem;cursor:pointer}#content{padding:5px max(5px,calc((100vw - 1000px)/2))}#comments-section{padding:20px max(5px,calc((100vw - 1000px)/2));border-top:1px solid #d2d2d2;margin-top:40px}#comments-section h3{color:#80b192;font-size:1.9rem;margin-bottom:1rem}#comment-submit-form{display:flex;flex-direction:column;gap:10px;max-width:600px;margin-bottom:2rem}#commentContent{background-color:transparent;color:#d2d2d2;border:1px solid #d2d2d2;font-family:monospace;padding:10px;font-size:1.1rem;resize:vertical}#commentContent:focus{outline:1px solid #80b192;border-color:#80b192}#submitCommentBtn{background-color:transparent;color:#80b192;border:1px solid #80b192;font-family:monospace;padding:8px 16px;cursor:pointer;align-self:flex-start;font-size:1.1rem}#submitCommentBtn:hover{background-color:#80b192;color:#3b3f3b}.comment-item{border-left:3px solid #80b192;background-color:#d2d2d208;padding:10px 15px;margin-bottom:15px;max-width:800px}.comment-user{color:#80b192;margin:0 0 5px;font-size:1rem}.comment-content{margin:0;font-size:1.2rem;white-space:pre-wrap}@media(max-width:768px){#burger{display:block}#links{display:none;position:absolute;top:100%;right:0;flex-direction:column;align-items:flex-start;padding:10px;border:1px solid;background-color:#3b3f3b;z-index:10}#links.open{display:flex}#login-nav-form{margin-top:10px}.form-inputs{flex-direction:column;align-items:flex-start}#login-nav-form input[type=text],#login-nav-form input[type=password]{width:150px}.banner-inner{flex-direction:column;align-items:flex-start;gap:4px}}#contactLinks{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem}.contactLink{border:solid #d2d2d2 1px;flex:1 1 250px;max-width:300px;padding:1rem;overflow-wrap:break-word}.project{padding:1rem;border:solid #d2d2d2 1px}
+</style><script type="module" src="/_astro/page.BhAQTkHH.js"></script></head> <body> <nav> <div id="title"> <a href="/"> <h1>Ben Godfrey</h1> <h2>Developer</h2> </a> </div> <button id="burger" aria-label="Menu">☰</button> <div id="links"> <a href="/projects"><h2>projects</h2></a> <a href="/blog"><h2>blog</h2></a> <div id="auth"> <form id="login-nav-form"> <input type="text" id="navUser" placeholder="username" required> <input type="password" id="navPass" placeholder="password" required> <div> <button type="submit" id="authBtn">login</button> <label class="toggle-label"> <input type="checkbox" id="authToggle"> <span>sign up instead</span> </label> </div> </form> </div> </div> </nav> <div id="signup-banner" style="display: none;"> <div class="banner-inner"> <span>⚠️ Username must be exactly 3 alphanumeric characters.</span> <span>By signing up, you agree to the <a href="/terms_and_conditions" target="_blank">Terms</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</span> </div> </div> <div id="content"> <h1 id="task629-build-log">Task629 Build Log</h1>
+<p>To be able to build skills and grow, you need to keep track of what you are doing, and know how that aligns with the skills in question. The trouble is that sitting down and listing all of the skills demonstrated by a task is in itself not a quick process. Adding this admin to your own day-to-day brings enough cognitive load that we often choose not to bother. The motivation for this tool then presents itself: <em>make the tracking of skills easy by inferring them from the descriptions of tasks</em>.</p>
+<p>This idea has been the driving force of an ongoing project of mine for the last few months. I have had a few runs at this idea and I have created a few working protoypes - for me, the issue is that the output was only ever that, a prototype. I think that this idea has legs, so I am keen to build it in a clean, slick way, which could be deployed as a Docker container which other people might be interested in using. It is for this reason that I am taking another stab at the project. This document serves as a build log for this process.</p>
+<h3 id="the-name">The name</h3>
+<p>As the ancient wisdom says, naming things is one of the hardest parts of programming. Lucky for us, I have this nailed down right from the start of this build process. This tool will go by the name “Task629”. This is because the data which we will be dealing with are “tasks” submitted by the user, and I will be working on this outside of working hours, that is (roughly) 6 to 9.</p>
+<h2 id="planning">Planning</h2>
+<p>Before we can make a real start, we need to understand what we want to build. To this end, let’s decide what our flow should look like. At a high level, we want to:</p>
+<ol>
+<li>take some “task” input from the user</li>
+<li>store that task</li>
+<li>analyse that task, to find skills associated with it</li>
+<li>store those skills</li>
+</ol>
+<p>At a high level, that is:</p>
+<pre class="mermaid">sequenceDiagram
+    actor user
+    participant db@{ "type" : "database" }
+    
+    user->>db:task submitted&#x3C;br>and stored
+    db->>model:task analysis&#x3C;br>requested
+    model->>db:skills stored</pre>
+<p>Already, we have a few decisions to make. What shall I use for my:</p>
+<ul>
+<li>database</li>
+<li>ai provider</li>
+<li>messaging tool</li>
+</ul>
+<p>As previously mentioned, this project is one which I have had a few test runs at. In previous iterations I have used:</p>
+<ul>
+<li>MongoDB
+<ul>
+<li>for flexibility of my data</li>
+</ul>
+</li>
+<li>Ollama
+<ul>
+<li>for simple self-hosted functionality</li>
+</ul>
+</li>
+<li>Telegram
+<ul>
+<li>for free bot creation</li>
+</ul>
+</li>
+</ul>
+<p>I am keen to keep this stack as it is for now, as I am familiar with the tools, and they do what I need them to do. My plan for development is to build with these tools in mind, but to build in a way which will allow me to accomodate for alternatives in the future. One does not wish to over-complicate unnecessarily, <strong>but</strong>, this plan does seem to lend itself quite well to the <a href="https://refactoring.guru/design-patterns/strategy">strategy</a> design pattern. I will keep this in mind when I start building.</p>
+<p>These specific technologies can fit in to our sequence diagram as follows:</p>
+<pre class="mermaid">sequenceDiagram
+    actor User
+
+    User->>Node: Submit task via Telegram
+    Node->>DB: Store task
+    Node->>Ollama: Analyse task
+    Ollama->>Node: Skills
+    Node->>DB: Store skills</pre>
+<h2 id="building">Building</h2>
+<p>We are just about ready to get building. To do this and keep myself pointing in the right direction, I am going to roughly plan out the steps I want to take. That is, more or less, I am going to make myself a backlog. Once I have these backlog items I will go about completing them in a test driven way. How exciting.</p>
+<h3 id="backlog-1">Backlog 1</h3>
+<ol>
+<li>Create Telegram bot
+<ul>
+<li>It should receive messages</li>
+<li>It should be able to execute code on receipt of a message</li>
+</ul>
+</li>
+<li>Create MongoDB connection
+<ul>
+<li>It should be able to write</li>
+<li>It should be able to read</li>
+<li>It should handle connection errors</li>
+</ul>
+</li>
+<li>Allow requests to Ollama API
+<ul>
+<li>It should abstract network calls</li>
+<li>It should handle errors</li>
+</ul>
+</li>
+<li>Create prompt for model
+<ul>
+<li>It should insert a user’s task into a prompt template</li>
+<li>It should throw an error if task input is empty</li>
+</ul>
+</li>
+<li>Create Mongoose schema
+<ul>
+<li>It should accomodate for:
+<ul>
+<li>A task description</li>
+<li>Timestamps</li>
+<li>A skills list</li>
+<li>A status enum</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="backlog-1---item-1--item-5">Backlog 1 - Item 1 / Item 5</h3>
+<p>The tests created ahead of the development of item 1 are as follows:</p>
+<ul>
+<li>passes received telegram messages to the task handler</li>
+<li>calls the task handler exactly once</li>
+<li>propagates errors from the task handler</li>
+<li>handles non-text messages gracefully (e.g., photos or stickers)</li>
+<li>handles empty string messages</li>
+<li>processes multiple rapid/concurrent messages independently</li>
+</ul>
+<p>I implemented this functionality with <a href="https://github.com/telegraf/telegraf">Telegraf</a>. Really my <code>Bot</code> class is just a wrapper for existing functions. At the moment I would go as far as to say that it is an unnecessary wrapper, but building this structure early doors will make expansion easier later on. Here is the class itself:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Bot</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">    bot</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Telegraf</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">    taskHandler</span><span style="color:#F97583">:</span><span style="color:#B392F0"> TaskHandler</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">botToken</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">taskHandler</span><span style="color:#F97583">:</span><span style="color:#B392F0"> TaskHandler</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.bot </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Telegraf</span><span style="color:#E1E4E8">(botToken);</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.taskHandler </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> taskHandler;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.bot.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">message</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'text'</span><span style="color:#E1E4E8">), </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.handleTelegramMessage.</span><span style="color:#B392F0">bind</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.bot.</span><span style="color:#B392F0">launch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> handleTelegramMessage</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">ctx</span><span style="color:#F97583">:</span><span style="color:#B392F0"> TextMessageContext</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">void</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">        await</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.taskHandler.</span><span style="color:#B392F0">handle</span><span style="color:#E1E4E8">(ctx.message.text);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>I have a <code>TaskHandler</code> interface here used here. Again, this is not the most interesting of structures just now, but will give us a more manageable codebase moving forward - especially when we look to adding different strategies.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> interface</span><span style="color:#B392F0"> TaskHandler</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    handle</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">task</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">void</span><span style="color:#E1E4E8">>;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>At this point, we can test what we have by creating a Telegram bot and plugging in our key.</p>
+<h3 id="backlog-1---item-2">Backlog 1 - Item 2</h3>
+<p>As above, I can guide my development by outlining my test cases:</p>
+<ul>
+<li>should create &#x26; save a task successfully with defaults</li>
+<li>should read a created task after write</li>
+<li>should fail if a required field is missing</li>
+<li>should fail if status is not in the enum</li>
+</ul>
+<p>Mongo and node are friends, so implementing my database should not be an issue. I have used Mongoose a lot before, so it is a technology which I am happy to use here. Down the line I can think a bit more about my schemata, but for now I am going to make a guess about what my task model will look like so I have something to implement. I can create a database instance with <code>mongoose.connect</code> call. Once this has been called, I can implement my model as:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> TaskSchema</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Schema</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    description: { type: String, required: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#E1E4E8">    skills: [{ type: String }],</span></span>
+<span class="line"><span style="color:#E1E4E8">    status: { type: String, enum: [</span><span style="color:#9ECBFF">'NEW'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'COMPLETE'</span><span style="color:#E1E4E8">], default: </span><span style="color:#9ECBFF">'NEW'</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#E1E4E8">}, { timestamps: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> Task</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> mongoose.</span><span style="color:#B392F0">model</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Task'</span><span style="color:#E1E4E8">, TaskSchema);</span></span></code></pre>
+<h3 id="backlog-1---item-3">Backlog 1 - Item 3</h3>
+<p>Now I can move on to my Ollama connection. There are npm packages for Ollama, but to be honest, I don’t think it is worth using these. What I will be using Ollama for is making simple text-based requests. I might as well just hit the API directly for this.</p>
+<p>This was all well and good, but to actually test what I have done I need to make a request. This is where I faced the first issue with the implementation so far. My requests kept on timing out. When I think about how my Ollama network requests are going to be used, the plan is to do this completely asynchronously. That is, it should not matter at all how long my requests take, as long as they finish. I need to tell node this. From a small amount of Googling, it seems that my issue is not a default timeout from Node, but rather an issue with how Undici, a dependancy, handles things. To be rigorous I should stop and figure this out, but I am in a prototyping mood. I am going to apply a Stack Overflow fix and put a pin in this as something to come back to. The Stack Overflow fix in question is creating an AbortController instance, and including this as a signal value in my request:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> controller</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AbortController</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> timeout</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> setTimeout</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    controller.</span><span style="color:#B392F0">abort</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}, </span><span style="color:#79B8FF">15</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="backlog-1---item-4">Backlog 1 - Item 4</h3>
+<p>The final bit of work to be done with regards to this backlog is some function to generate my prompts. Really this is is going to be a simple piece of code which takes a <code>task</code> variable and plonks it inside of a template. I am going to add two features to this to enhance the simple function. These are:</p>
+<ul>
+<li>throwing an error if the task is an empty string</li>
+<li>adding a second value which will be inserted into the template, this being a description of what the user does, to ensure that suggested skills are relevant</li>
+</ul>
+<h3 id="stringing-things-together">Stringing things together</h3>
+<p>Now we have all of our components, we can make our version 1.0.0. First piece of software sellotape, we need the task handler which our bot uses to include the line <code>const newTask = Task.create({description: task})</code>. Simples.</p>
+<p>After that, we just need a way of taking new tasks and sending them off for analysis. Since we have our functions created, we just need to put them in the right order. Remeber our friend from earlier:</p>
+<pre class="mermaid">sequenceDiagram
+    actor user
+    participant db@{ "type" : "database" }
+    
+    user->>db:task submitted&#x3C;br>and stored
+    db->>model:task analysis&#x3C;br>requested
+    model->>db:skills stored</pre>
+<p>It is time for him to be realised.</p>
+<p>The storage is taken care of in the task handler we just described. After that, we need to make a request. This can be handled with the following function:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> analyseTask</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">task</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">ollama</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Ollama</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">[]> </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> prompt</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> ''</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        prompt </span><span style="color:#F97583">=</span><span style="color:#B392F0"> generateTaskAnalysisRequest</span><span style="color:#E1E4E8">(task);</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (err) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(err)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> ollama.</span><span style="color:#B392F0">request</span><span style="color:#E1E4E8">(prompt);</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> skills</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">[] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">split</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">","</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> skills;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>With a little more mongoose magic we can make sure we are requesting analysis on the right task, and update the document with the result of the analysis:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> analyseNextTask</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">ollama</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Ollama</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Promise</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">void</span><span style="color:#E1E4E8">> </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> taskToAnalyse</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> Task.</span><span style="color:#B392F0">findOne</span><span style="color:#E1E4E8">({status: </span><span style="color:#9ECBFF">"NEW"</span><span style="color:#E1E4E8">});</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">taskToAnalyse) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"no task found"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`Analysing task: ${</span><span style="color:#E1E4E8">taskToAnalyse</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">description</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> skills</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">[] </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> analyseTask</span><span style="color:#E1E4E8">(taskToAnalyse.description, ollama);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    taskToAnalyse.status </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "COMPLETE"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    taskToAnalyse.skills </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> skills;</span></span>
+<span class="line"><span style="color:#F97583">    await</span><span style="color:#E1E4E8"> taskToAnalyse.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`Finished task analysis of: ${</span><span style="color:#E1E4E8">taskToAnalyse</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">description</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>For a nice finishing touch, we can schedule our job to run regularly. Inside of our index.ts we can add</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#B392F0">setInterval</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        analyseNextTask</span><span style="color:#E1E4E8">(ollama).</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">(console.error);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }, </span><span style="color:#79B8FF">HOUR</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>And we can call it a day. Task629 version 1.0.0 is wrapped. The repo is <a href="https://github.com/sudo-bendg/list629">here</a>, and the docker image is available at benjamingodfrey/task629. Good hunting!</p> </div> <div id="comments-section"> <h3>Comments</h3> <form id="comment-submit-form" data-post-title="task629_build_log"> <textarea id="commentContent" placeholder="Type your comment here..." required rows="4"></textarea> <button type="submit" id="submitCommentBtn">Post Comment</button> </form> <div id="comments" data-post-title="task629_build_log"> <p>Loading comments...</p> </div> </div> <script type="module">const u=document.getElementById("burger"),m=document.getElementById("links");u?.addEventListener("click",()=>{m?.classList.toggle("open")});const t=document.getElementById("authToggle"),n=document.getElementById("authBtn"),e=document.getElementById("navUser"),o=document.getElementById("signup-banner");t?.addEventListener("change",()=>{t.checked?(n&&(n.textContent="sign up"),o&&(o.style.display="block"),e&&(e.setAttribute("pattern","^[a-zA-Z0-9]{3}$"),e.setAttribute("maxlength","3"),e.setAttribute("title","Username must be exactly 3 alphanumeric characters."))):(n&&(n.textContent="login"),o&&(o.style.display="none"),e&&(e.removeAttribute("pattern"),e.removeAttribute("maxlength"),e.removeAttribute("title")))});const g=document.getElementById("login-nav-form");g?.addEventListener("submit",async a=>{a.preventDefault();const s=document.getElementById("navPass");if(!e||!s||!t)return;const r=e.value,c=s.value,l=t.checked?"/api/signup":"/api/login",d=t.checked?"Sign up":"Login";try{(await fetch(l,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:r,password:c}),credentials:"include"})).ok?window.location.reload():alert(`${d} failed`)}catch(i){console.error("Network error:",i)}});</script> <script type="module">const e=document.getElementById("comments"),m=document.getElementById("comment-submit-form"),n=e?.dataset.postTitle||"";console.log("Fetched postTitle:",n);n||(console.warn("Comments section loaded, but no postTitle was provided by the Astro layout."),e&&(e.innerHTML="<p>Comments are disabled for this page.</p>"));console.log("postTitle");console.log(n);async function i(){if(!(!e||!n))try{const o=await fetch("/api/comment",{method:"GET",headers:{"Content-Type":"application/json","X-Post-Name":n},credentials:"include"});if(o.ok){const s=await o.json();e.innerHTML="",s.forEach(r=>{const t=document.createElement("div");t.classList.add("comment-item"),t.innerHTML=`
+                                <p class="comment-user"><strong>@${r.user_id}</strong></p>
+                                <p class="comment-content">${r.content}</p>
+                            `,e.appendChild(t)}),s.length===0&&(e.innerHTML="<p>No comments yet. Be the first!</p>")}else e.innerHTML="<p>Failed to load comments.</p>"}catch(o){console.error("Network error fetching comments:",o),e.innerHTML="<p>Network error fetching comments.</p>"}}i();m?.addEventListener("submit",async o=>{o.preventDefault();const s=document.getElementById("commentContent");if(!s)return;if(!n){alert("Cannot post comment: Target post title is missing.");return}const r=s.value;try{const t=await fetch("/api/comment",{method:"POST",headers:{"Content-Type":"application/json","X-Post-Name":n},body:JSON.stringify({content:r}),credentials:"include"});if(t.ok){s.value="",e?.querySelector("p")?.textContent?.includes("No comments yet")&&(e.innerHTML="");const c=document.createElement("div");c.classList.add("comment-item"),c.innerHTML=`
+                            <p class="comment-user"><strong>@You</strong></p>
+                            <p class="comment-content">${r.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</p>
+                        `,e?.appendChild(c)}else t.status===401?alert("Unauthorized: You must be logged in to comment."):alert("Failed to post comment. Check server logs.")}catch(t){console.error("Network error posting comment:",t),alert("A network error occurred while posting your comment.")}});</script> </body> </html>
